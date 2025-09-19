@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Formulario en EcoMarket</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4fff4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    .form-container h2 {
+      margin-bottom: 20px;
+      color: #2e7d32;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    input[type="submit"] {
+      margin-top: 15px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+      background: #1b5e20;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <h2>Ingreso a EcoMarket</h2>
+
+    <!-- El action hace que al enviar se vaya a index1.html -->
+    <form action="index1.html" method="get">
+
+      <label for="fname">Nombres:</label>
+      <input type="text" id="fname" name="fname" required>
+
+      <label for="lname">Apellidos:</label>
+      <input type="text" id="lname" name="lname" required>
+
+      <label for="dire">Dirección:</label>
+      <input type="text" id="dire" name="dire" required>
+
+      <label>Estado Civil:</label>
+      <input type="radio" name="ecivil" value="soltero"> Soltero(a)<br>
+      <input type="radio" name="ecivil" value="casado"> Casado(a)<br>
+      <input type="radio" name="ecivil" value="viudo"> Viudo(a)<br>
+      <input type="radio" name="ecivil" value="divorciado"> Divorciado(a)<br>
+
+      <label>Preferencias:</label>
+      <input type="checkbox" name="prefe" value="frutas">frutas organicas<br>
+      <input type="checkbox" name="prefe" value="versuras">verduras organicas<br>
+      <input type="checkbox" name="prefe" value="menestras">menestras organicas<br>
+
+      <label for="fcompra">Fecha de compra:</label>
+      <input type="date" name="fcompra" id="fcompra">
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" required>
+
+      <!-- Botón único -->
+      <input type="submit" value="INGRESAR">
+
+    </form>
+  </div>
+</body>
+
+</html>
+
+<script src="cart.js"></script>

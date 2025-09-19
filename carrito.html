@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Carrito - EcoMarket</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container my-5">
+    <h1>🛒 Tu Carrito</h1>
+    
+    <!-- Lista de productos -->
+    <ul id="cartItems" class="list-group mt-3"></ul>
+
+    <!-- Resumen de pago -->
+    <div id="cartSummary" class="mt-4 p-3 border rounded bg-light d-none">
+      <h5>Total a pagar: <span id="cartTotal" class="fw-bold text-success">S/ 0.00</span></h5>
+      <button class="btn btn-primary mt-2" onclick="checkout()">Pagar</button>
+    </div>
+
+    <!-- Seguir comprando -->
+    <a href="index1.html" class="btn btn-success mt-3">Seguir comprando</a>
+  </div>
+
+  <script>
+    // Cargar carrito desde localStorage o crear vacío
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+      const cartContainer = document.getElementById("cartItems");
+      const cartSummary = document.getElementById("cartSummary");
+      const cartTotal = document.getElementById("cartTotal");
+
+      cartContainer.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = "<p class='text-muted'>Tu carrito está vacío 🛒</p>";
+        cartSummary.classList.add("d-none");
+        return;
+      }
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.precio;
+        cartContainer.innerHTML += `
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            ${item.nombre} - S/ ${item.precio.toFixed(2)}
+            <button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})">X</button>
+          </li>
+        `;
+      });
+
+      cartTotal.textContent = `S/ ${total.toFixed(2)}`;
+      cartSummary.classList.remove("d-none");
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1); // Quitar producto
+      localStorage.setItem("cart", JSON.stringify(cart)); // Guardar
+      renderCart(); // Volver a mostrar
+    }
+
+    function checkout() {
+      alert("✅ Pago realizado con éxito. ¡Gracias por tu compra!");
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    // Mostrar carrito al cargar
+    renderCart();
+  </script>
+</body>
+</html>
